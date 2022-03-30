@@ -41,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D04077027F4759C0079C2D1 /* mapKit */ = {
+			isa = PBXGroup;
+			children = (
+				2D19B81527F472F8000FBC34 /* MapViewController.swift */,
+				2D19B81827F47340000FBC34 /* CustomAnnotation.swift */,
+			);
+			path = mapKit;
+			sourceTree = "<group>";
+		};
 		2DCEA03227F460C100631D7C = {
 			isa = PBXGroup;
 			children = (
@@ -67,8 +76,7 @@
 				2DCEA04727F460C700631D7C /* Assets.xcassets */,
 				2DCEA04927F460C700631D7C /* LaunchScreen.storyboard */,
 				2DCEA04C27F460C700631D7C /* Info.plist */,
-				2D19B81527F472F8000FBC34 /* MapViewController.swift */,
-				2D19B81827F47340000FBC34 /* CustomAnnotation.swift */,
+				2D04077027F4759C0079C2D1 /* mapKit */,
 			);
 			path = labagare;
 			sourceTree = "<group>";
