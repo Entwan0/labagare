@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D19B81627F472F8000FBC34 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19B81527F472F8000FBC34 /* MapViewController.swift */; };
+		2D19B81927F47340000FBC34 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19B81827F47340000FBC34 /* CustomAnnotation.swift */; };
 		2DCEA03F27F460C100631D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA03E27F460C100631D7C /* AppDelegate.swift */; };
 		2DCEA04127F460C100631D7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04027F460C100631D7C /* SceneDelegate.swift */; };
 		2DCEA04327F460C100631D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04227F460C100631D7C /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D19B81527F472F8000FBC34 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2D19B81827F47340000FBC34 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		2DCEA03B27F460C100631D7C /* labagare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = labagare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DCEA03E27F460C100631D7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DCEA04027F460C100631D7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				2DCEA04727F460C700631D7C /* Assets.xcassets */,
 				2DCEA04927F460C700631D7C /* LaunchScreen.storyboard */,
 				2DCEA04C27F460C700631D7C /* Info.plist */,
+				2D19B81527F472F8000FBC34 /* MapViewController.swift */,
+				2D19B81827F47340000FBC34 /* CustomAnnotation.swift */,
 			);
 			path = labagare;
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			files = (
 				2DCEA04327F460C100631D7C /* ViewController.swift in Sources */,
 				2DCEA03F27F460C100631D7C /* AppDelegate.swift in Sources */,
+				2D19B81927F47340000FBC34 /* CustomAnnotation.swift in Sources */,
 				2DCEA04127F460C100631D7C /* SceneDelegate.swift in Sources */,
+				2D19B81627F472F8000FBC34 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

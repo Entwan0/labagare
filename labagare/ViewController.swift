@@ -9,12 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    //TEST
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func goMap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapViewController = storyboard.instantiateViewController(identifier: "MapViewController")
+        self.navigationController?.pushViewController(mapViewController, animated: true)
+    }
 
 }
 

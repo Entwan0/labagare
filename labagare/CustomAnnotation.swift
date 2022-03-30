@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import MapKit
+
+class CustomAnnotation: MKPointAnnotation {
+    var id: String?
+}
