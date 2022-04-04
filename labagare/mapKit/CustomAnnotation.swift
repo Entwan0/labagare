@@ -10,4 +10,5 @@ import MapKit
 
 class CustomAnnotation: MKPointAnnotation {
     var id: String?
+    var nbrIncident: Int = 0
 }

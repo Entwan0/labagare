@@ -12,7 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,15 +28,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Nous créons une annotation customisée
         let annotation = CustomAnnotation()
         annotation.id = "id-1"
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 45.18541716, longitude: 5.72996383)
-        annotation.title = "Mon annotation customisée"
-        annotation.subtitle = "Nous sommes à Chavant"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 45.192172782838604, longitude: 5.7265306562434475)
+        annotation.title = "Jardin de ville"
+        annotation.subtitle = "il y a " + String(annotation.nbrIncident)
         mapView.addAnnotation(annotation)
         
         // Nous créons un itinéraire entre deux points
-        let sourceCoordinates = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
-        let destinationCoordinates = CLLocationCoordinate2D(latitude: 45.18541716, longitude: 5.72996383)
-        directionsRequest(source: sourceCoordinates, destination: destinationCoordinates)
+        //let sourceCoordinates = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
+        //let destinationCoordinates = CLLocationCoordinate2D(latitude: 45.18541716, longitude: 5.72996383)
+        //directionsRequest(source: sourceCoordinates, destination: destinationCoordinates)
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
@@ -51,7 +51,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
             let rightButton = UIButton(type: .infoLight)
             rightButton.tag = annotation.hash
-
+            
+            //rightButton.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
+            
             pinView.animatesDrop = true
             pinView.canShowCallout = true
             pinView.rightCalloutAccessoryView = rightButton
@@ -63,6 +65,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
+    @objc func updateIncident(annotation:UIButton) {
+        annotation.tag += 1
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 //        showAlert(title: "Annotation sélectionnée", message: "Vous venez de sélectionner l'annotation")
 
