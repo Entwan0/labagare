@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yxE-Xo-bx3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="MUC-Sl-Qve">
+            <objects>
+                <navigationController id="yxE-Xo-bx3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QGN-ID-Nl7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="00f-YH-SeA" kind="relationship" relationship="rootViewController" id="MD2-K2-49P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zts-Fp-fBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575" y="96"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tRk-mY-WRd">
+            <objects>
+                <viewController id="00f-YH-SeA" customClass="ViewController" customModule="labagare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0dA-gK-6Bz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-Jk-bRU">
+                                <rect key="frame" x="10" y="802" width="394" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xhn-XV-Ff6"/>
+                                </constraints>
+                                <state key="normal" title="Map"/>
+                                <connections>
+                                    <action selector="goMap" destination="00f-YH-SeA" eventType="touchUpInside" id="pQt-ue-gZ5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LtI-OZ-Se9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LtI-OZ-Se9" firstAttribute="bottom" secondItem="BXt-Jk-bRU" secondAttribute="bottom" constant="20" id="GwM-AC-pF7"/>
+                            <constraint firstItem="BXt-Jk-bRU" firstAttribute="leading" secondItem="LtI-OZ-Se9" secondAttribute="leading" constant="10" id="IZm-g1-Rs9"/>
+                            <constraint firstItem="LtI-OZ-Se9" firstAttribute="trailing" secondItem="BXt-Jk-bRU" secondAttribute="trailing" constant="10" id="Mz5-Ik-Dl7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="X5n-Km-hpc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5k-Ue-QDx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="96"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="fTp-y9-zI6">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="gHn-7V-eVR" customClass="MapViewController" customModule="labagare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T59-e3-MIg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-Qr-E2G">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Whl-td-rmh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Whl-td-rmh" firstAttribute="bottom" secondItem="I0y-Qr-E2G" secondAttribute="bottom" id="9AC-jG-SDm"/>
+                            <constraint firstItem="I0y-Qr-E2G" firstAttribute="leading" secondItem="Whl-td-rmh" secondAttribute="leading" id="BDI-D4-oAY"/>
+                            <constraint firstItem="Whl-td-rmh" firstAttribute="trailing" secondItem="I0y-Qr-E2G" secondAttribute="trailing" id="E27-X0-u6x"/>
+                            <constraint firstItem="I0y-Qr-E2G" firstAttribute="top" secondItem="Whl-td-rmh" secondAttribute="top" id="zja-2L-1cO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="I0y-Qr-E2G" id="kiw-YY-eyd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O60-20-LjI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871" y="96"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
