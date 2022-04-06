@@ -12,6 +12,10 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    
+    var selectedAnnotation: CustomAnnotation?
+    
+    var idAnnotation = 0
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,24 +23,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         
         mapView.showsUserLocation = true
-        mapView.showsPointsOfInterest = false
         
         // Nous centrons la carte sur la latitude et la longitude passée en paramètre
         let center = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
         centerMap(onLocation: center)
         
-        // Nous créons une annotation customisée
-        let annotation = CustomAnnotation()
-        annotation.id = "id-1"
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 45.192172782838604, longitude: 5.7265306562434475)
-        annotation.title = "Jardin de ville"
-        annotation.subtitle = "il y a " + String(annotation.nbrIncident)
-        mapView.addAnnotation(annotation)
         
-        // Nous créons un itinéraire entre deux points
-        //let sourceCoordinates = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
-        //let destinationCoordinates = CLLocationCoordinate2D(latitude: 45.18541716, longitude: 5.72996383)
-        //directionsRequest(source: sourceCoordinates, destination: destinationCoordinates)
+        var annotations = [CustomAnnotation]()
+        annotations.append(CustomAnnotation(title: "Jardin de ville",coordinate: CLLocationCoordinate2D(latitude: 45.192172782838604, longitude: 5.7265306562434475)))
+        annotations.append(CustomAnnotation(title: "test",coordinate: CLLocationCoordinate2D(latitude: 45.192149786088635, longitude: 5.723228886604267)))
+        
+        annotations.forEach{ (annotation) in
+            annotation.id = String(self.idAnnotation)
+            self.idAnnotation += 1
+            
+            annotation.nbrIncident = 0
+            annotation.subtitle = "il y a 0 incidents depuis hier"
+            mapView.addAnnotation(annotation)
+        }
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
@@ -51,27 +55,36 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
             let rightButton = UIButton(type: .infoLight)
             rightButton.tag = annotation.hash
-            
-            //rightButton.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
+
+            rightButton.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
             
             pinView.animatesDrop = true
             pinView.canShowCallout = true
             pinView.rightCalloutAccessoryView = rightButton
 
             return pinView
-
         } else {
             return nil
         }
     }
 
-    @objc func updateIncident(annotation:UIButton) {
-        annotation.tag += 1
+    
+    @objc func updateIncident() {
+        selectedAnnotation?.nbrIncident += 1
+//        selectedAnnotation.subtitle = "il y a " + String(selectedAnnotation.nbrIncident)
+        
+        mapView.annotations.forEach { (annotation) in
+            if annotation is CustomAnnotation, (annotation as! CustomAnnotation).id == selectedAnnotation?.id {
+                (annotation as! CustomAnnotation).nbrIncident = selectedAnnotation?.nbrIncident ?? 0
+                (annotation as! CustomAnnotation).subtitle = "il y a " + String(selectedAnnotation?.nbrIncident ?? 0) + " incidents depuis hier"
+            }
+        }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        showAlert(title: "Annotation sélectionnée", message: "Vous venez de sélectionner l'annotation")
-
+        if let selected = view.annotation as? CustomAnnotation {
+            self.selectedAnnotation = selected
+        }
     }
 
     //MARK: -- Itinéraire --
@@ -102,5 +115,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         renderer.strokeColor = UIColor.red
         renderer.lineWidth = 3.0
         return renderer
+    }
+}
+
+class annotationTitleCoordonate {
+    var title: String
+    var coordonate: CLLocationCoordinate2D
+
+    init (title: String, coordonate: CLLocationCoordinate2D) {
+        self.title = title
+        self.coordonate = coordonate
     }
 }
