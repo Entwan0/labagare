@@ -9,24 +9,51 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
     var selectedAnnotation: CustomAnnotation?
     
     var idAnnotation = 0
+    
+    var locationManager: CLLocationManager!
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        
+        mapView.showsUserLocation = true
+
         
         mapView.delegate = self
         
         mapView.showsUserLocation = true
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // Check for Location Services
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+        }
+
+        //Zoom to user location
+        if let userLocation = locationManager.location?.coordinate {
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+            mapView.setRegion(viewRegion, animated: false)
+        }
+
+        DispatchQueue.main.async {
+            self.locationManager.startUpdatingLocation()
+        }
+        
         // Nous centrons la carte sur la latitude et la longitude passée en paramètre
-        let center = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
-        centerMap(onLocation: center)
+        //let center = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
+        //centerMap(onLocation: center)
         
         
         var annotations = [CustomAnnotation]()
@@ -44,23 +71,32 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 10000, longitudinalMeters: 10000)
         mapView.setRegion(region,animated: true)
     }
 
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //Zoom to user location
+        if let userLocation = locationManager.location?.coordinate {
+            let viewRegion = MKCoordinateRegion(center: userLocation, latitudinalMeters: 200, longitudinalMeters: 200)
+            mapView.setRegion(viewRegion, animated: false)
+        }
+    }
+    
     //MARK: -- Annotations --
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is CustomAnnotation {
             let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: String(annotation.hash))
-
-            let rightButton = UIButton(type: .infoLight)
-            rightButton.tag = annotation.hash
-
-            rightButton.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
+            
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            button.setImage(UIImage(named: "plus"), for: .normal)
+            button.tag = annotation.hash
+            
+            button.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
             
             pinView.animatesDrop = true
             pinView.canShowCallout = true
-            pinView.rightCalloutAccessoryView = rightButton
+            pinView.rightCalloutAccessoryView = button
 
             return pinView
         } else {
@@ -86,44 +122,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             self.selectedAnnotation = selected
         }
     }
-
-    //MARK: -- Itinéraire --
-    func directionsRequest(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: source, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination, addressDictionary: nil))
-        request.requestsAlternateRoutes = false
-        request.transportType = .walking
-
-        let directions = MKDirections(request: request)
-
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-
-            for route in unwrappedResponse.routes {
-                self.mapView.addOverlay(route.polyline)
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-            }
+    
+    @IBAction func ChangeMapTypeButton(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0 : mapView.mapType = MKMapType.standard
+        case 1 : mapView.mapType = .satellite
+        case 2 : mapView.mapType = .hybrid
+        default: break
         }
-
-        self.mapView.removeOverlays(mapView.overlays)
     }
 
-    //show and custom the line
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
-        renderer.strokeColor = UIColor.red
-        renderer.lineWidth = 3.0
-        return renderer
-    }
-}
-
-class annotationTitleCoordonate {
-    var title: String
-    var coordonate: CLLocationCoordinate2D
-
-    init (title: String, coordonate: CLLocationCoordinate2D) {
-        self.title = title
-        self.coordonate = coordonate
-    }
 }
