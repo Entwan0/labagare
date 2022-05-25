@@ -15,6 +15,9 @@
 		2DCEA04127F460C100631D7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04027F460C100631D7C /* SceneDelegate.swift */; };
 		2DCEA04327F460C100631D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04227F460C100631D7C /* ViewController.swift */; };
 		2DCEA04827F460C700631D7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DCEA04727F460C700631D7C /* Assets.xcassets */; };
+		CE02772727FB30DF0076EDDB /* CallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE02772627FB30DF0076EDDB /* CallController.swift */; };
+		CE430DD328228C2C00ED2634 /* actualite.json in Resources */ = {isa = PBXBuildFile; fileRef = CE430DD228228C2C00ED2634 /* actualite.json */; };
+		CE430DD828228DF100ED2634 /* Actuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE430DD728228DF100ED2634 /* Actuality.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		2DCEA04227F460C100631D7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DCEA04727F460C700631D7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DCEA04C27F460C700631D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE02772627FB30DF0076EDDB /* CallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallController.swift; sourceTree = "<group>"; };
+		CE430DD228228C2C00ED2634 /* actualite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = actualite.json; sourceTree = "<group>"; };
+		CE430DD728228DF100ED2634 /* Actuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actuality.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +79,13 @@
 				2DCEA03E27F460C100631D7C /* AppDelegate.swift */,
 				2DCEA04027F460C100631D7C /* SceneDelegate.swift */,
 				2DCEA04227F460C100631D7C /* ViewController.swift */,
+				CE02772627FB30DF0076EDDB /* CallController.swift */,
+				CE430DD728228DF100ED2634 /* Actuality.swift */,
 				2D1EF64027FB2D09003D2FD7 /* Main.storyboard */,
 				2DCEA04727F460C700631D7C /* Assets.xcassets */,
 				2DCEA04C27F460C700631D7C /* Info.plist */,
 				2D1EF64427FB2D36003D2FD7 /* LaunchScreen.storyboard */,
+				CE430DD228228C2C00ED2634 /* actualite.json */,
 			);
 			path = labagare;
 			sourceTree = "<group>";
@@ -139,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCEA04827F460C700631D7C /* Assets.xcassets in Resources */,
+				CE430DD328228C2C00ED2634 /* actualite.json in Resources */,
 				2D1EF64527FB2D36003D2FD7 /* LaunchScreen.storyboard in Resources */,
 				2D1EF64127FB2D09003D2FD7 /* Main.storyboard in Resources */,
 			);
@@ -151,9 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE430DD828228DF100ED2634 /* Actuality.swift in Sources */,
 				2DCEA04327F460C100631D7C /* ViewController.swift in Sources */,
 				2DCEA03F27F460C100631D7C /* AppDelegate.swift in Sources */,
 				2D19B81927F47340000FBC34 /* CustomAnnotation.swift in Sources */,
+				CE02772727FB30DF0076EDDB /* CallController.swift in Sources */,
 				2DCEA04127F460C100631D7C /* SceneDelegate.swift in Sources */,
 				2D19B81627F472F8000FBC34 /* MapViewController.swift in Sources */,
 			);
@@ -284,6 +296,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XMC756ZKS8;
 				INFOPLIST_FILE = labagare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +315,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XMC756ZKS8;
 				INFOPLIST_FILE = labagare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

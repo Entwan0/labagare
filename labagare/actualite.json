@@ -1,0 +1,14 @@
+{
+  "actualite":[
+     {
+       "titre": "Bob",
+       "age": "16",
+       "url_image": "https://www.20minutes.fr/high-tech/3280359-20220501-google-plus-million-applications-malveillantes-bannies-play-store#&gid=1&pid=1"
+     },
+     {
+         "titre": "Bob",
+         "age": "16",
+         "url_image": "https://www.20minutes.fr/high-tech/3280359-20220501-google-plus-million-applications-malveillantes-bannies-play-store#&gid=1&pid=1"
+     }
+  ]
+}
