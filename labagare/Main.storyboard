@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yxE-Xo-bx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yxE-Xo-bx3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,8 +33,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-Jk-bRU">
-                                <rect key="frame" x="10" y="802" width="394" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gw-Ut-pzR">
+                                <rect key="frame" x="39" y="809" width="120" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="envoi message"/>
+                                <connections>
+                                    <action selector="sendMessage" destination="00f-YH-SeA" eventType="touchUpInside" id="vlt-7W-90I"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-Jk-bRU">
+                                <rect key="frame" x="147" y="804" width="394" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Xhn-XV-Ff6"/>
                                 </constraints>
@@ -42,20 +51,34 @@
                                     <action selector="goMap" destination="00f-YH-SeA" eventType="touchUpInside" id="pQt-ue-gZ5"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zTU-kh-lhN">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="ALo-tK-8t6"/>
+                                    <constraint firstAttribute="width" constant="240" id="bo3-pe-Ha7"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LtI-OZ-Se9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zTU-kh-lhN" firstAttribute="centerX" secondItem="0dA-gK-6Bz" secondAttribute="centerX" id="B4T-uO-sYY"/>
                             <constraint firstItem="LtI-OZ-Se9" firstAttribute="bottom" secondItem="BXt-Jk-bRU" secondAttribute="bottom" constant="20" id="GwM-AC-pF7"/>
+                            <constraint firstItem="4Gw-Ut-pzR" firstAttribute="centerX" secondItem="0dA-gK-6Bz" secondAttribute="centerX" id="HaX-h6-FxG"/>
                             <constraint firstItem="BXt-Jk-bRU" firstAttribute="leading" secondItem="LtI-OZ-Se9" secondAttribute="leading" constant="10" id="IZm-g1-Rs9"/>
+                            <constraint firstItem="4Gw-Ut-pzR" firstAttribute="top" secondItem="LtI-OZ-Se9" secondAttribute="top" constant="17" id="M3d-M5-2H9"/>
                             <constraint firstItem="LtI-OZ-Se9" firstAttribute="trailing" secondItem="BXt-Jk-bRU" secondAttribute="trailing" constant="10" id="Mz5-Ik-Dl7"/>
+                            <constraint firstItem="zTU-kh-lhN" firstAttribute="centerY" secondItem="0dA-gK-6Bz" secondAttribute="centerY" id="PxT-nx-5c7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="X5n-Km-hpc"/>
+                    <connections>
+                        <outlet property="imageView" destination="zTU-kh-lhN" id="fHq-Wf-2uJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5k-Ue-QDx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141" y="96"/>
+            <point key="canvasLocation" x="140.57971014492756" y="95.758928571428569"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="fTp-y9-zI6">
@@ -65,8 +88,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-Qr-E2G">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-Qr-E2G">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Whl-td-rmh"/>
@@ -84,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O60-20-LjI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="96"/>
+            <point key="canvasLocation" x="901" y="471"/>
         </scene>
     </scenes>
     <resources>
