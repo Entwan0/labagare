@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,6 +18,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var idAnnotation = 0
     
     var locationManager: CLLocationManager!
+    
+    var images = [UIImage]()
+
+        var pickedImage = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +69,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.subtitle = "il y a 0 incidents depuis hier"
             mapView.addAnnotation(annotation)
         }
+        
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
@@ -94,11 +99,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             pinView.animatesDrop = true
             pinView.canShowCallout = true
             pinView.rightCalloutAccessoryView = button
+            
+            let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            button2.setImage(UIImage(named: "plus"), for: .normal)
+            pinView.leftCalloutAccessoryView = button2
+            button2.addTarget(self, action: #selector(afficheImage), for: .touchUpInside)
+            
 
             return pinView
         } else {
             return nil
         }
+    }
+    
+    @objc func afficheImage(){
+        print(self.images.count)
+        
+        
     }
     
     @objc func verificationAddIncident(){
@@ -113,7 +130,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let okPhoto = UIAlertAction(title: "Oui avec photo", style: .default, handler: { (action) -> Void in
             print("Ok boutton appuyé")
-           self.updateIncident()
+            
+            
+            // Camera
+            
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                print("ooh")
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+                
+            }
+            self.updateIncident()
          })
         
         // Boutton annuler
@@ -130,6 +159,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         // Presente le dialogue à l'utilisateur
         self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            self.dismiss(animated: true, completion: nil)
+        }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            images.append(image)
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 
     
@@ -157,6 +197,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.selectedAnnotation = selected
         }
     }
+    
+    
     
     @IBAction func ChangeMapTypeButton(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
