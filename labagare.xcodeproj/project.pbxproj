@@ -12,6 +12,8 @@
 		2D1EF64127FB2D09003D2FD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1EF64027FB2D09003D2FD7 /* Main.storyboard */; };
 		2D1EF64527FB2D36003D2FD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1EF64427FB2D36003D2FD7 /* LaunchScreen.storyboard */; };
 		2D6287E628477D4F00D22435 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6287E528477D4F00D22435 /* ImagesViewController.swift */; };
+		2D689CF9286316FE00C38124 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D689CF7286316FE00C38124 /* CustomCollectionViewCell.swift */; };
+		2D689CFA286316FE00C38124 /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D689CF8286316FE00C38124 /* CustomCollectionViewCell.xib */; };
 		2DCEA03F27F460C100631D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA03E27F460C100631D7C /* AppDelegate.swift */; };
 		2DCEA04127F460C100631D7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04027F460C100631D7C /* SceneDelegate.swift */; };
 		2DCEA04327F460C100631D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04227F460C100631D7C /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 		2D1EF64027FB2D09003D2FD7 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2D1EF64427FB2D36003D2FD7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D6287E528477D4F00D22435 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		2D689CF7286316FE00C38124 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D689CF8286316FE00C38124 /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		2DCEA03B27F460C100631D7C /* labagare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = labagare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DCEA03E27F460C100631D7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DCEA04027F460C100631D7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 		2D04077027F4759C0079C2D1 /* mapKit */ = {
 			isa = PBXGroup;
 			children = (
+				2D689CF8286316FE00C38124 /* CustomCollectionViewCell.xib */,
+				2D689CF7286316FE00C38124 /* CustomCollectionViewCell.swift */,
 				2D19B81527F472F8000FBC34 /* MapViewController.swift */,
 				2D19B81827F47340000FBC34 /* CustomAnnotation.swift */,
 				2D6287E528477D4F00D22435 /* ImagesViewController.swift */,
@@ -153,6 +159,7 @@
 				2DCEA04827F460C700631D7C /* Assets.xcassets in Resources */,
 				CE430DD328228C2C00ED2634 /* actualite.json in Resources */,
 				2D1EF64527FB2D36003D2FD7 /* LaunchScreen.storyboard in Resources */,
+				2D689CFA286316FE00C38124 /* CustomCollectionViewCell.xib in Resources */,
 				2D1EF64127FB2D09003D2FD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE430DD828228DF100ED2634 /* Actuality.swift in Sources */,
+				2D689CF9286316FE00C38124 /* CustomCollectionViewCell.swift in Sources */,
 				2DCEA04327F460C100631D7C /* ViewController.swift in Sources */,
 				2D6287E628477D4F00D22435 /* ImagesViewController.swift in Sources */,
 				2DCEA03F27F460C100631D7C /* AppDelegate.swift in Sources */,

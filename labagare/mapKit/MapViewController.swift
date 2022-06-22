@@ -69,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.subtitle = "il y a 0 incidents depuis hier"
             mapView.addAnnotation(annotation)
         }
-        
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
@@ -90,20 +89,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if annotation is CustomAnnotation {
             let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: String(annotation.hash))
             
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-            button.setImage(UIImage(named: "plus"), for: .normal)
-            button.tag = annotation.hash
+            let addImageButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            addImageButton.setImage(UIImage(named: "plus"), for: .normal)
+            addImageButton.tag = annotation.hash
             
-            button.addTarget(self, action: #selector(verificationAddIncident), for: .touchUpInside)
+            addImageButton.addTarget(self, action: #selector(verificationAddIncident), for: .touchUpInside)
             
             pinView.animatesDrop = true
             pinView.canShowCallout = true
-            pinView.rightCalloutAccessoryView = button
+            pinView.rightCalloutAccessoryView = addImageButton
             
-            let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-            button2.setImage(UIImage(named: "plus"), for: .normal)
-            pinView.leftCalloutAccessoryView = button2
-            button2.addTarget(self, action: #selector(afficheImage), for: .touchUpInside)
+            let imageButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            imageButton.setImage(UIImage(named: "image"), for: .normal)
+            pinView.leftCalloutAccessoryView = imageButton
+            imageButton.addTarget(self, action: #selector(afficheImage), for: .touchUpInside)
             
 
             return pinView
@@ -113,9 +112,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @objc func afficheImage(){
-        print(self.images.count)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "images") as ImagesViewController
+        secondVC.images = self.images
         
+        secondVC.modalPresentationStyle = .fullScreen
+        secondVC.modalTransitionStyle = .crossDissolve
         
+        present(secondVC, animated: true, completion: nil)
     }
     
     @objc func verificationAddIncident(){
@@ -129,18 +133,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
           })
         
         let okPhoto = UIAlertAction(title: "Oui avec photo", style: .default, handler: { (action) -> Void in
-            print("Ok boutton appuyé")
-            
-            
-            // Camera
-            
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                print("ooh")
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
                 self.present(imagePickerController, animated: true, completion: nil)
-                
             }
             self.updateIncident()
          })
@@ -154,8 +151,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         dialogMessage.addAction(ok)
         dialogMessage.addAction(okPhoto)
         dialogMessage.addAction(cancel)
-        
-        
         
         // Presente le dialogue à l'utilisateur
         self.present(dialogMessage, animated: true, completion: nil)
@@ -187,7 +182,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 (annotation as! CustomAnnotation).listDate.append(someDateTime)
                 (annotation as! CustomAnnotation).nbrIncident = selectedAnnotation?.nbrIncident ?? 0
                 (annotation as! CustomAnnotation).subtitle = String(selectedAnnotation?.nbrIncident ?? 0) + " incidents depuis hier. Dernier à " + someDateTime
-
             }
         }
     }

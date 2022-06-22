@@ -32,15 +32,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gw-Ut-pzR">
-                                <rect key="frame" x="155.5" y="105" width="103" height="30"/>
-                                <state key="normal" title="Envoi message"/>
-                                <connections>
-                                    <action selector="sendMessage" destination="00f-YH-SeA" eventType="touchUpInside" id="vlt-7W-90I"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-Jk-bRU">
-                                <rect key="frame" x="10" y="802" width="394" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-Jk-bRU">
+                                <rect key="frame" x="10" y="808" width="394" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Xhn-XV-Ff6"/>
                                 </constraints>
@@ -56,6 +49,13 @@
                                     <constraint firstAttribute="width" constant="240" id="bo3-pe-Ha7"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gw-Ut-pzR">
+                                <rect key="frame" x="156" y="102" width="103" height="30"/>
+                                <state key="normal" title="Envoi message"/>
+                                <connections>
+                                    <action selector="sendMessage" destination="00f-YH-SeA" eventType="touchUpInside" id="vlt-7W-90I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LtI-OZ-Se9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5k-Ue-QDx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140.57971014492756" y="95.758928571428569"/>
+            <point key="canvasLocation" x="200" y="96"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="fTp-y9-zI6">
@@ -119,10 +119,84 @@
             </objects>
             <point key="canvasLocation" x="971" y="96"/>
         </scene>
+        <!--images-->
+        <scene sceneID="g6t-nB-WwV">
+            <objects>
+                <viewController restorationIdentifier="images" storyboardIdentifier="images" title="images" id="Eie-mh-kwa" customClass="ImagesViewController" customModule="labagare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jQE-Vy-4Pv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzQ-kP-ban">
+                                <rect key="frame" x="41" y="83" width="46" height="30"/>
+                                <state key="normal" title="Retour"/>
+                                <connections>
+                                    <action selector="goBack" destination="Eie-mh-kwa" eventType="touchUpInside" id="v6K-Hr-LGg"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-jd-2FJ">
+                                <rect key="frame" x="0.0" y="349" width="414" height="208"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="7o4-Yh-nNe"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1ru-pb-9O2">
+                                    <size key="itemSize" width="128" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="nWz-3p-1gV">
+                                <rect key="frame" x="146" y="582" width="122.5" height="27.5"/>
+                                <color key="pageIndicatorTintColor" systemColor="systemOrangeColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemRedColor"/>
+                                <connections>
+                                    <action selector="pageControltapped:" destination="Eie-mh-kwa" eventType="touchUpInside" id="dTa-95-Nn7"/>
+                                </connections>
+                            </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="labelNoImage" text="Aucune image actuellement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66l-nt-adJ">
+                                <rect key="frame" x="101" y="791" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="68v-gK-dXH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="C2e-jd-2FJ" firstAttribute="leading" secondItem="68v-gK-dXH" secondAttribute="leading" id="1TG-Bb-hlW"/>
+                            <constraint firstItem="nWz-3p-1gV" firstAttribute="centerX" secondItem="jQE-Vy-4Pv" secondAttribute="centerX" id="Pkx-M6-GWK"/>
+                            <constraint firstItem="nWz-3p-1gV" firstAttribute="top" secondItem="C2e-jd-2FJ" secondAttribute="bottom" constant="25" id="b0t-dN-E0t"/>
+                            <constraint firstItem="NzQ-kP-ban" firstAttribute="leading" secondItem="68v-gK-dXH" secondAttribute="leading" constant="41" id="cK3-UZ-MGo"/>
+                            <constraint firstItem="68v-gK-dXH" firstAttribute="trailing" secondItem="C2e-jd-2FJ" secondAttribute="trailing" id="cxo-cV-HGf"/>
+                            <constraint firstItem="C2e-jd-2FJ" firstAttribute="centerY" secondItem="68v-gK-dXH" secondAttribute="centerY" id="hFU-Al-Hvc"/>
+                            <constraint firstItem="68v-gK-dXH" firstAttribute="bottom" secondItem="66l-nt-adJ" secondAttribute="bottom" constant="50" id="j44-2q-U0m"/>
+                            <constraint firstItem="NzQ-kP-ban" firstAttribute="top" secondItem="68v-gK-dXH" secondAttribute="top" constant="39" id="tp5-q7-GEo"/>
+                            <constraint firstItem="66l-nt-adJ" firstAttribute="centerX" secondItem="68v-gK-dXH" secondAttribute="centerX" id="yvT-6q-0a3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="C2e-jd-2FJ" id="2Yd-w4-Vhl"/>
+                        <outlet property="noImage" destination="66l-nt-adJ" id="eTq-mt-uKR"/>
+                        <outlet property="pageControl" destination="nWz-3p-1gV" id="dQK-Ng-mcx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inD-UF-Q4u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1731.8840579710147" y="95.758928571428569"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
