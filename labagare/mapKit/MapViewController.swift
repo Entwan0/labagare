@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,6 +18,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var idAnnotation = 0
     
     var locationManager: CLLocationManager!
+    
+    var images = [UIImage]()
+
+        var pickedImage = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +55,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.locationManager.startUpdatingLocation()
         }
         
-        // Nous centrons la carte sur la latitude et la longitude passée en paramètre
-        //let center = CLLocationCoordinate2D(latitude: 45.19193413, longitude: 5.72666532)
-        //centerMap(onLocation: center)
-        
         
         var annotations = [CustomAnnotation]()
         annotations.append(CustomAnnotation(title: "Jardin de ville",coordinate: CLLocationCoordinate2D(latitude: 45.192172782838604, longitude: 5.7265306562434475)))
-        annotations.append(CustomAnnotation(title: "test",coordinate: CLLocationCoordinate2D(latitude: 45.192149786088635, longitude: 5.723228886604267)))
+        annotations.append(CustomAnnotation(title: "Université inter",coordinate: CLLocationCoordinate2D(latitude: 45.192149786088635, longitude: 5.723228886604267)))
+        annotations.append(CustomAnnotation(title: "Piscine municipale",coordinate: CLLocationCoordinate2D(latitude: 45.19528110361686, longitude: 5.7667080713141035)))
         
         annotations.forEach{ (annotation) in
             annotation.id = String(self.idAnnotation)
@@ -68,6 +69,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.subtitle = "il y a 0 incidents depuis hier"
             mapView.addAnnotation(annotation)
         }
+        
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {
@@ -92,27 +94,100 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             button.setImage(UIImage(named: "plus"), for: .normal)
             button.tag = annotation.hash
             
-            button.addTarget(self, action: #selector(updateIncident), for: .touchUpInside)
+            button.addTarget(self, action: #selector(verificationAddIncident), for: .touchUpInside)
             
             pinView.animatesDrop = true
             pinView.canShowCallout = true
             pinView.rightCalloutAccessoryView = button
+            
+            let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            button2.setImage(UIImage(named: "plus"), for: .normal)
+            pinView.leftCalloutAccessoryView = button2
+            button2.addTarget(self, action: #selector(afficheImage), for: .touchUpInside)
+            
 
             return pinView
         } else {
             return nil
         }
     }
+    
+    @objc func afficheImage(){
+        print(self.images.count)
+        
+        
+    }
+    
+    @objc func verificationAddIncident(){
+        //Creer dialogue alert
+        let dialogMessage = UIAlertController(title: "confirmer", message: "Etes vous sûr de vouloir ajouter un incident ?", preferredStyle: .alert)
+         
+         // Créer boutton ok avec action ajout incident
+         let ok = UIAlertAction(title: "Oui", style: .default, handler: { (action) -> Void in
+             print("Ok boutton appuyé")
+            self.updateIncident()
+          })
+        
+        let okPhoto = UIAlertAction(title: "Oui avec photo", style: .default, handler: { (action) -> Void in
+            print("Ok boutton appuyé")
+            
+            
+            // Camera
+            
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                print("ooh")
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true, completion: nil)
+                
+            }
+            self.updateIncident()
+         })
+        
+        // Boutton annuler
+        let cancel = UIAlertAction(title: "Annuler", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+         
+        //Ajoute les boutton au dialog alert
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(okPhoto)
+        dialogMessage.addAction(cancel)
+        
+        
+        
+        // Presente le dialogue à l'utilisateur
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            self.dismiss(animated: true, completion: nil)
+        }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            images.append(image)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
 
     
     @objc func updateIncident() {
+
         selectedAnnotation?.nbrIncident += 1
-//        selectedAnnotation.subtitle = "il y a " + String(selectedAnnotation.nbrIncident)
         
         mapView.annotations.forEach { (annotation) in
             if annotation is CustomAnnotation, (annotation as! CustomAnnotation).id == selectedAnnotation?.id {
+                let date = Date()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                let someDateTime = formatter.string(from: date)
+                
+                (annotation as! CustomAnnotation).listDate.append(someDateTime)
                 (annotation as! CustomAnnotation).nbrIncident = selectedAnnotation?.nbrIncident ?? 0
-                (annotation as! CustomAnnotation).subtitle = "il y a " + String(selectedAnnotation?.nbrIncident ?? 0) + " incidents depuis hier"
+                (annotation as! CustomAnnotation).subtitle = String(selectedAnnotation?.nbrIncident ?? 0) + " incidents depuis hier. Dernier à " + someDateTime
+
             }
         }
     }
@@ -122,6 +197,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.selectedAnnotation = selected
         }
     }
+    
+    
     
     @IBAction func ChangeMapTypeButton(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {

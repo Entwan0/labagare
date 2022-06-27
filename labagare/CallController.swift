@@ -12,20 +12,19 @@ class CallController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        name.returnKeyType = .done
+        number.returnKeyType = .done
         // Do any additional setup after loading the view.
         
     }
-    func loadJson(completion: @escaping ([Actuality]?) -> Void) {
-        if let url = Bundle.main.url(forResource: "actualite", withExtension:"json"){
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Actualities.self, from: data)
-                completion(jsonData.actualite)
-            }
-            catch {
-                print("error")
-            }
-        }
+    
+    @IBOutlet var name: UITextField!
+    @IBOutlet var number: UITextField!
+    @IBOutlet  var button:UIButton!
+    @IBOutlet var result : UILabel!
+    
+    @IBAction func save(){
+        result.text=name.text
     }
+    
 }
