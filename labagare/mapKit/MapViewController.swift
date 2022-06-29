@@ -69,6 +69,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.subtitle = "il y a 0 incidents depuis hier"
             mapView.addAnnotation(annotation)
         }
+        
     }
     
     func centerMap(onLocation location: CLLocationCoordinate2D) {

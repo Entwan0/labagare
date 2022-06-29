@@ -19,8 +19,6 @@
 		2DCEA04327F460C100631D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEA04227F460C100631D7C /* ViewController.swift */; };
 		2DCEA04827F460C700631D7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DCEA04727F460C700631D7C /* Assets.xcassets */; };
 		CE02772727FB30DF0076EDDB /* CallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE02772627FB30DF0076EDDB /* CallController.swift */; };
-		CE430DD328228C2C00ED2634 /* actualite.json in Resources */ = {isa = PBXBuildFile; fileRef = CE430DD228228C2C00ED2634 /* actualite.json */; };
-		CE430DD828228DF100ED2634 /* Actuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE430DD728228DF100ED2634 /* Actuality.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +36,6 @@
 		2DCEA04727F460C700631D7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DCEA04C27F460C700631D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE02772627FB30DF0076EDDB /* CallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallController.swift; sourceTree = "<group>"; };
-		CE430DD228228C2C00ED2634 /* actualite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = actualite.json; sourceTree = "<group>"; };
-		CE430DD728228DF100ED2634 /* Actuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actuality.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +85,10 @@
 				2DCEA04027F460C100631D7C /* SceneDelegate.swift */,
 				2DCEA04227F460C100631D7C /* ViewController.swift */,
 				CE02772627FB30DF0076EDDB /* CallController.swift */,
-				CE430DD728228DF100ED2634 /* Actuality.swift */,
 				2D1EF64027FB2D09003D2FD7 /* Main.storyboard */,
 				2DCEA04727F460C700631D7C /* Assets.xcassets */,
 				2DCEA04C27F460C700631D7C /* Info.plist */,
 				2D1EF64427FB2D36003D2FD7 /* LaunchScreen.storyboard */,
-				CE430DD228228C2C00ED2634 /* actualite.json */,
 			);
 			path = labagare;
 			sourceTree = "<group>";
@@ -157,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCEA04827F460C700631D7C /* Assets.xcassets in Resources */,
-				CE430DD328228C2C00ED2634 /* actualite.json in Resources */,
 				2D1EF64527FB2D36003D2FD7 /* LaunchScreen.storyboard in Resources */,
 				2D689CFA286316FE00C38124 /* CustomCollectionViewCell.xib in Resources */,
 				2D1EF64127FB2D09003D2FD7 /* Main.storyboard in Resources */,
@@ -171,7 +164,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE430DD828228DF100ED2634 /* Actuality.swift in Sources */,
 				2D689CF9286316FE00C38124 /* CustomCollectionViewCell.swift in Sources */,
 				2DCEA04327F460C100631D7C /* ViewController.swift in Sources */,
 				2D6287E628477D4F00D22435 /* ImagesViewController.swift in Sources */,

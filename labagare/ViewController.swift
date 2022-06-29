@@ -14,11 +14,6 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //
-        CallController().loadJson { actualities in
-            //imageView.image = actualite[0]
-        }
     }
 
     @IBAction func goMap() {
